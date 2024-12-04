@@ -10,7 +10,7 @@ const app = express();
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
-  }),
+  })
 );
 
 app.use(express.json());
@@ -38,7 +38,12 @@ app.use(
         logger.info(JSON.stringify(logObject));
       },
     },
-  }),
+  })
 );
+
+// "<----------- ROUTES ----------->"
+import userRouter from "./routes/user.routes.js";
+
+app.use("/api/v1/users", userRouter);
 
 export { app };
