@@ -3,7 +3,7 @@ import { ApiError } from "../utils/apiError.js";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.models.js";
 
-const verifyJWT = asyncHandler(async (req, res, next) => {
+const verifyJWT = asyncHandler(async (req, _, next) => {
   try {
     const token =
       req.cookies.accessToken ||
@@ -31,4 +31,19 @@ const verifyJWT = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { verifyJWT };
+const isAdmin = asyncHandler(async (req, _, next) => {
+  const { email } = req.user;
+
+  const user = await User.findOne({ email });
+
+  if (user.role !== "admin") {
+    throw new ApiError(
+      401,
+      "You are not authorized for this action since you are not an admin"
+    );
+  }
+
+  next();
+});
+
+export { verifyJWT, isAdmin };

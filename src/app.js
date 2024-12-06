@@ -43,7 +43,9 @@ app.use(
 
 // "<----------- ROUTES ----------->"
 import userRouter from "./routes/user.routes.js";
+import weatherRouter from "./routes/weather.routes.js";
 
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/weather", weatherRouter);
 
 export { app };

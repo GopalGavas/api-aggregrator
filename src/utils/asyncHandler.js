@@ -4,7 +4,7 @@ const asyncHandler = (requestHandler) => {
       await Promise.resolve(requestHandler(req, res, next));
     } catch (error) {
       const statusCode = error.statusCode || 500;
-      const errorMessage = error.errorMessage || "Server Error";
+      const errorMessage = error.message || "Server Error";
 
       res.status(statusCode).json({
         success: false,

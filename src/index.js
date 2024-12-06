@@ -6,6 +6,10 @@ dotenv.config({
   path: "./.env",
 });
 
+// console.log("ENVIRONMET VARIABLES ARE BEIGN LOADED.... ");
+// console.log(`PORT: ${process.env.PORT} `);
+// console.log(`OPENWEATHER API KEY: ${process.env.OPENWEATHER_API_KEY}`);
+
 connectDB()
   .then(() => {
     app.on("error", (error) => {
