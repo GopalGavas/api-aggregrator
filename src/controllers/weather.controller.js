@@ -28,25 +28,21 @@ const fetchCurrentWeather = asyncHandler(async (req, res) => {
 
   const weatherData = await getCurrentWeather(city, units || "metric");
 
-  await User.findByIdAndUpdate(
-    req.user?._id,
-    {
-      $inc: {
-        "apiUsage.weather": 1,
-      },
+  await User.findByIdAndUpdate(req.user?._id, {
+    $inc: {
+      "apiUsage.weather": 1,
+    },
 
-      $push: {
-        activityLogs: {
-          action: "FETCHED CURRENT WEATHER DATA",
-          details: {
-            city,
-            units,
-          },
+    $push: {
+      activityLogs: {
+        action: "FETCHED CURRENT WEATHER DATA",
+        details: {
+          city,
+          units,
         },
       },
     },
-    { new: true }
-  );
+  });
 
   return res
     .status(200)
@@ -86,26 +82,22 @@ const fetchWeatherForecast = asyncHandler(async (req, res) => {
     days
   );
 
-  await User.findByIdAndUpdate(
-    req.user?._id,
-    {
-      $inc: {
-        "apiUsage.weather": 1,
-      },
+  await User.findByIdAndUpdate(req.user?._id, {
+    $inc: {
+      "apiUsage.weather": 1,
+    },
 
-      $push: {
-        activityLogs: {
-          action: "FETCHED WEATHER FORECAST",
-          details: {
-            city,
-            units,
-            days,
-          },
+    $push: {
+      activityLogs: {
+        action: "FETCHED WEATHER FORECAST",
+        details: {
+          city,
+          units,
+          days,
         },
       },
     },
-    { new: true }
-  );
+  });
 
   console.log("WEATHER FORECAST FROM WEATHER CONTROLLER", weatherForecast);
 
