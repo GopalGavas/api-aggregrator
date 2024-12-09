@@ -45,6 +45,7 @@ const userSchema = new Schema(
     apiUsage: {
       weather: { type: Number, default: 0 },
       poi: { type: Number, default: 0 },
+      traffic: { type: Number, default: 0 },
     },
 
     activityLogs: [

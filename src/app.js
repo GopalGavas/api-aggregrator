@@ -45,9 +45,11 @@ app.use(
 import userRouter from "./routes/user.routes.js";
 import weatherRouter from "./routes/weather.routes.js";
 import poiRouter from "./routes/poi.routes.js";
+import trafficRouter from "./routes/traffic.routes.js";
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/weather", weatherRouter);
 app.use("/api/v1/poi", poiRouter);
+app.use("/api/v1/traffic", trafficRouter);
 
 export { app };
